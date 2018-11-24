@@ -11,24 +11,30 @@ namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers
     {
         protected abstract void DumpToConsoleUsingSpecificDumper(IEnumerable<RealEstateAgentSalesDto> agentSales);
 
-        public void DumpToConsole(IEnumerable<RealEstateAgentSalesDto> agentSales, IEnumerable<string> searchTerms, int numberOfRequestedResults, bool isFakeApiResult)
+        public void DumpToConsole(GetTopSellersResult result, int numberOfRequestedResults, bool isFakeApiResult)
         {
-            if (!agentSales.Any())
+            if (result == null || !result.AgentSales.Any())
                 System.Console.WriteLine("No available results found for selected criteria.");
             else
             {
-                DumpHeader(searchTerms, numberOfRequestedResults, isFakeApiResult);
-                DumpToConsoleUsingSpecificDumper(agentSales);
+                DumpHeader(result, numberOfRequestedResults, isFakeApiResult);
+                DumpToConsoleUsingSpecificDumper(result.AgentSales);
             }
         }
 
-        private static void DumpHeader(IEnumerable<string> searchTerms, int numberOfRequestedResults, bool isFakeApiResult)
+        public void PrintDisclaimer()
         {
             Colorful.Console.WriteLine();
             Colorful.Console.WriteAscii("Funda", Color.DarkGoldenrod);
             Colorful.Console.WriteLine();
+
+            Colorful.Console.WriteLine("Trying to fetch all the required data for the request. It could take some time...");
+        }
+
+        private static void DumpHeader(GetTopSellersResult result, int numberOfRequestedResults, bool isFakeApiResult)
+        {
             Colorful.Console.Write($"Showing first {numberOfRequestedResults} results for the search of: ");
-            Colorful.Console.Write($"{string.Join(" - ", searchTerms)}", Color.DarkGoldenrod);
+            Colorful.Console.Write($"{string.Join(" - ", result.SearchTerms)}", Color.DarkGoldenrod);
             Colorful.Console.WriteLine();
             if (isFakeApiResult)
             {
@@ -37,6 +43,8 @@ namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers
             }
 
             Colorful.Console.ResetColor();
+            Colorful.Console.WriteLine($"Total Number of processed objects: {result.TotalNumberOfObjectsForRequest}", Color.CornflowerBlue);
+            Colorful.Console.WriteLine($"Elapsed Time: {result.ElapsedTime}", Color.CornflowerBlue);
         }
     }
 }

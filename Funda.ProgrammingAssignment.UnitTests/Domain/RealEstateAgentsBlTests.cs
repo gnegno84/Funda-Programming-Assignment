@@ -89,7 +89,7 @@ namespace Funda.ProgrammingAssignment.UnitTests.Domain
 
             var result = await _sut.GetTopSellers(_dummySearchTerms, _dummySearchResultNumber);
 
-            result.Should().BeInDescendingOrder(dto => dto.AgentId);
+            result.AgentSales.Should().BeInDescendingOrder(dto => dto.AgentId);
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace Funda.ProgrammingAssignment.UnitTests.Domain
 
             var result = await _sut.GetTopSellers(_dummySearchTerms, _dummySearchResultNumber);
 
-            result.Should().HaveCount(_dummySearchResultNumber);
+            result.AgentSales.Should().HaveCount(_dummySearchResultNumber);
         }
     }
 

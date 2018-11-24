@@ -6,6 +6,6 @@ namespace Funda.ProgrammingAssignment.Domain.BL
 {
     public interface IRealEstateAgentsBl
     {
-        Task<IEnumerable<RealEstateAgentSalesDto>> GetTopSellers(IEnumerable<string> searchTerms, int howMany);
+        Task<GetTopSellersResult> GetTopSellers(IEnumerable<string> searchTerms, int howMany);
     }
 }

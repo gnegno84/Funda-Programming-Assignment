@@ -26,10 +26,12 @@ namespace Funda.ProgrammingAssignment.Console.Commands.GetRealEstateAgentSales
 
             using (var context = container.BeginLifetimeScope())
             {
-                var agents = (await context.Resolve<IRealEstateAgentsBl>().GetTopSellers(opts.SearchTerms, opts.NumberOfResults)).ToList();
                 var dataDumper = context.ResolveKeyed<IRealEstatesAgentSalesDataConsoleDumper>(opts.OutputType);
+
+                dataDumper.PrintDisclaimer();
+                var result = (await context.Resolve<IRealEstateAgentsBl>().GetTopSellers(opts.SearchTerms, opts.NumberOfResults));
                 
-                dataDumper.DumpToConsole(agents, opts.SearchTerms, opts.NumberOfResults, opts.UseFakeApi);
+                dataDumper.DumpToConsole(result, opts.NumberOfResults, opts.UseFakeApi);
             }
         }
 

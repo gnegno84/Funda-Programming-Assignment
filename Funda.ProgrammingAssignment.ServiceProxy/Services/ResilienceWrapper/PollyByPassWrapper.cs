@@ -2,12 +2,13 @@
 using System.Threading.Tasks;
 using Funda.ProgrammingAssignment.ServiceProxy.Exceptions;
 using Polly;
+using RestSharp;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ResilienceWrapper
 {
     public class PollyByPassWrapper : IResiliencePolicyWrapper
     {
-        public async Task<TRes> Execute<TE, TRes>(Func<Task<TE>> funcToWrap, Func<TE, TRes> funcToExecuteOnSuccess)
+        public async Task<TRes> Execute<TE, TRes>(Func<Task<IRestResponse<TE>>> funcToWrap, Func<IRestResponse<TE>, TRes> funcToExecuteOnSuccess)
         {
             var execRes = await Policy
                 .NoOpAsync()
