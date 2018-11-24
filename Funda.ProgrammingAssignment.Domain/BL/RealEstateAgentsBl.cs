@@ -11,12 +11,12 @@ namespace Funda.ProgrammingAssignment.Domain.BL
 {
     public class RealEstateAgentsBl : IRealEstateAgentsBl
     {
-        private readonly IPropertiesRepository _apiProxyService;
+        private readonly IPropertiesRepository _propertiesRepository;
         private readonly IResultMapper _resultMapper;
 
-        public RealEstateAgentsBl(IPropertiesRepository apiProxyService, IResultMapper resultMapper)
+        public RealEstateAgentsBl(IPropertiesRepository propertiesRepository, IResultMapper resultMapper)
         {
-            _apiProxyService = apiProxyService;
+            _propertiesRepository = propertiesRepository;
             _resultMapper = resultMapper;
         }
 
@@ -26,7 +26,7 @@ namespace Funda.ProgrammingAssignment.Domain.BL
             if (searchTerms == null || !searchTerms.Any())
                 throw new ArgumentException("Value cannot be an empty collection.", nameof(searchTerms));
 
-            var res = await _apiProxyService.SearchPropertiesOnSale(searchTerms);
+            var res = await _propertiesRepository.SearchPropertiesOnSale(searchTerms);
 
             return _resultMapper.MapToAgentSales(res).OrderByDescending(rea => rea.NumberOfPropertiesInSale);
         }

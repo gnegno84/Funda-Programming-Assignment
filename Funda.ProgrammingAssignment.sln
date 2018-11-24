@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funda.ProgrammingAssignment
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funda.ProgrammingAssignment.ServiceProxy", "Funda.ProgrammingAssignment.ServiceProxy\Funda.ProgrammingAssignment.ServiceProxy.csproj", "{77408D2E-9265-4D8A-8AED-169566BF7191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funda.ProgrammingAssignment.UnitTests", "Funda.ProgrammingAssignment.UnitTests\Funda.ProgrammingAssignment.UnitTests.csproj", "{0C03130A-D580-4A9C-9B2F-855214CD65CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{77408D2E-9265-4D8A-8AED-169566BF7191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77408D2E-9265-4D8A-8AED-169566BF7191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77408D2E-9265-4D8A-8AED-169566BF7191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C03130A-D580-4A9C-9B2F-855214CD65CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C03130A-D580-4A9C-9B2F-855214CD65CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C03130A-D580-4A9C-9B2F-855214CD65CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C03130A-D580-4A9C-9B2F-855214CD65CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

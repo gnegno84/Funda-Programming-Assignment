@@ -8,12 +8,14 @@ namespace Funda.ProgrammingAssignment.Domain.Services.ResultMapper
     {
         public IEnumerable<RealEstateAgentSalesDto> MapToAgentSales(IEnumerable<PropertyDto> res)
         {
-            return res.GroupBy(r => r.RealEstateAgentId).Select(g => new RealEstateAgentSalesDto()
-            {
-                AgentId = g.Key,
-                AgentName = g.FirstOrDefault()?.RealEstateAgentName,
-                PropertiesOnSale = g.ToList()
-            });
+            return res
+                .GroupBy(r => r.RealEstateAgentId)
+                .Select(g => new RealEstateAgentSalesDto
+                {
+                    AgentId = g.Key,
+                    AgentName = g.FirstOrDefault()?.RealEstateAgentName,
+                    PropertiesOnSale = g.ToList()
+                });
         }
     }
 }
