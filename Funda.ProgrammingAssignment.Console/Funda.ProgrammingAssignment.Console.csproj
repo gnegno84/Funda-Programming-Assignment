@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Colorful.Console" Version="1.2.9" />
+    <PackageReference Include="CommandLineParser" Version="2.3.0" />
+    <PackageReference Include="ConsoleTableExt" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Funda.ProgrammingAssignment.Domain\Funda.ProgrammingAssignment.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

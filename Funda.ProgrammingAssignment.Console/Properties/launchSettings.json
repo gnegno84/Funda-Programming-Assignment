@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Funda.ProgrammingAssignment.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "--usefakeapi=true --searchterms Amsterdam Test"
+    }
+  }
+}
