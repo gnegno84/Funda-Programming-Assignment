@@ -82,7 +82,7 @@ namespace Funda.ProgrammingAssignment.UnitTests.Domain
 
             var unorderedMappedResult = new Faker<RealEstateAgentSalesDto>()
                 .RuleFor(r => r.AgentId, faker => faker.IndexFaker)
-                .RuleFor(r => r.PropertiesOnSale, (faker, dto) => new Faker<PropertyDto>().Generate(dto.AgentId))
+                .RuleFor(r => r.PropertiesOnSale, (faker, dto) => new Faker<PropertyDto>().Generate((int)dto.AgentId))
                 .Generate(10);
 
             _mockedResultMapper.Setup(mapper => mapper.MapToAgentSales(It.IsNotNull<IEnumerable<PropertyDto>>())).Returns(unorderedMappedResult);
@@ -90,6 +90,22 @@ namespace Funda.ProgrammingAssignment.UnitTests.Domain
             var result = await _sut.GetTopSellers(_dummySearchTerms, _dummySearchResultNumber);
 
             result.Should().BeInDescendingOrder(dto => dto.AgentId);
+        }
+
+        [Fact]
+        public async Task ItWillTakeTheFirstNOnlyElements()
+        {
+
+            var unorderedMappedResult = new Faker<RealEstateAgentSalesDto>()
+                .RuleFor(r => r.AgentId, faker => faker.IndexFaker)
+                .RuleFor(r => r.PropertiesOnSale, (faker, dto) => new Faker<PropertyDto>().Generate((int)dto.AgentId))
+                .Generate(100);
+
+            _mockedResultMapper.Setup(mapper => mapper.MapToAgentSales(It.IsNotNull<IEnumerable<PropertyDto>>())).Returns(unorderedMappedResult);
+
+            var result = await _sut.GetTopSellers(_dummySearchTerms, _dummySearchResultNumber);
+
+            result.Should().HaveCount(_dummySearchResultNumber);
         }
     }
 

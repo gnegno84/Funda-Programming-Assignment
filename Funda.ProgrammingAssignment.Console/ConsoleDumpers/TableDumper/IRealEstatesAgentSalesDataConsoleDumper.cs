@@ -5,6 +5,6 @@ namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers.TableDumper
 {
     public interface IRealEstatesAgentSalesDataConsoleDumper
     {
-        void DumpToConsole(IEnumerable<RealEstateAgentSalesDto> agentSales, IEnumerable<string> searchTerms, int numberOfRequestedResults);
+        void DumpToConsole(IEnumerable<RealEstateAgentSalesDto> agentSales, IEnumerable<string> searchTerms, int numberOfRequestedResults, bool isFakeApiResult);
     }
 }

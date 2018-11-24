@@ -29,7 +29,7 @@ namespace Funda.ProgrammingAssignment.Console.Commands.GetRealEstateAgentSales
                 var agents = (await context.Resolve<IRealEstateAgentsBl>().GetTopSellers(opts.SearchTerms, opts.NumberOfResults)).ToList();
                 var dataDumper = context.ResolveKeyed<IRealEstatesAgentSalesDataConsoleDumper>(opts.OutputType);
                 
-                dataDumper.DumpToConsole(agents, opts.SearchTerms, opts.NumberOfResults);
+                dataDumper.DumpToConsole(agents, opts.SearchTerms, opts.NumberOfResults, opts.UseFakeApi);
             }
         }
 

@@ -28,7 +28,7 @@ namespace Funda.ProgrammingAssignment.Domain.BL
 
             var res = await _propertiesRepository.SearchPropertiesOnSale(searchTerms);
 
-            return _resultMapper.MapToAgentSales(res).OrderByDescending(rea => rea.NumberOfPropertiesInSale);
+            return _resultMapper.MapToAgentSales(res).OrderByDescending(rea => rea.NumberOfPropertiesInSale).Take(howMany);
         }
     }
 }

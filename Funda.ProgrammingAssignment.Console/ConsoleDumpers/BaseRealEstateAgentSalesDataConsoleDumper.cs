@@ -11,18 +11,18 @@ namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers
     {
         protected abstract void DumpToConsoleUsingSpecificDumper(IEnumerable<RealEstateAgentSalesDto> agentSales);
 
-        public void DumpToConsole(IEnumerable<RealEstateAgentSalesDto> agentSales, IEnumerable<string> searchTerms, int numberOfRequestedResults)
+        public void DumpToConsole(IEnumerable<RealEstateAgentSalesDto> agentSales, IEnumerable<string> searchTerms, int numberOfRequestedResults, bool isFakeApiResult)
         {
             if (!agentSales.Any())
                 System.Console.WriteLine("No available results found for selected criteria.");
             else
             {
-                DumpHeader(searchTerms, numberOfRequestedResults);
+                DumpHeader(searchTerms, numberOfRequestedResults, isFakeApiResult);
                 DumpToConsoleUsingSpecificDumper(agentSales);
             }
         }
 
-        private static void DumpHeader(IEnumerable<string> searchTerms, int numberOfRequestedResults)
+        private static void DumpHeader(IEnumerable<string> searchTerms, int numberOfRequestedResults, bool isFakeApiResult)
         {
             Colorful.Console.WriteLine();
             Colorful.Console.WriteAscii("Funda", Color.DarkGoldenrod);
@@ -30,6 +30,12 @@ namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers
             Colorful.Console.Write($"Showing first {numberOfRequestedResults} results for the search of: ");
             Colorful.Console.Write($"{string.Join(" - ", searchTerms)}", Color.DarkGoldenrod);
             Colorful.Console.WriteLine();
+            if (isFakeApiResult)
+            {
+                Colorful.Console.WriteLine();
+                Colorful.Console.WriteLine("------------ THIS IS A FAKE RESULT GENERATED USING FAKE INTEGRATION API ------------", Color.Crimson);
+            }
+
             Colorful.Console.ResetColor();
         }
     }

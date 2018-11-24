@@ -5,7 +5,7 @@ namespace Funda.ProgrammingAssignment.Domain.Common.Dto
 {
     public class RealEstateAgentSalesDto
     {
-        public int AgentId { get; set; }
+        public long AgentId { get; set; }
         public string AgentName { get; set; }
         public IEnumerable<PropertyDto> PropertiesOnSale { get; set; }
         public int NumberOfPropertiesInSale => PropertiesOnSale.Count();

@@ -18,7 +18,7 @@ namespace Funda.ProgrammingAssignment.Domain.Services
                 .RuleFor(a => a.AgentName, faker => faker.Person.FullName)
                 .Generate(20);
 
-            var citiesFakePool = new[]{"Amsterdam","Rotterdam","Utrecht","Eindhoven","Groningen","Breda","Tilburg"};
+            var citiesFakePool = new[] { "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven", "Groningen", "Breda", "Tilburg" };
 
             return Task.FromResult(
                 new Faker<PropertyDto>()
