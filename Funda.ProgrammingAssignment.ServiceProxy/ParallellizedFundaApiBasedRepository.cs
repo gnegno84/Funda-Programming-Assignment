@@ -7,6 +7,7 @@ using Funda.ProgrammingAssignment.Domain.Common.Dto;
 using Funda.ProgrammingAssignment.Domain.Common.Services;
 using Funda.ProgrammingAssignment.ServiceProxy.Model.ApiResults;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.ApiConfigurationParser;
+using Funda.ProgrammingAssignment.ServiceProxy.Services.ProxyService;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.RequestStatusUpdater;
 using Microsoft.Extensions.Logging;
 

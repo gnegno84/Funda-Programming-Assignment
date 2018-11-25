@@ -1,6 +1,4 @@
-﻿using System;
-using Funda.ProgrammingAssignment.ServiceProxy.Model;
-using Microsoft.Extensions.Configuration;
+﻿using Funda.ProgrammingAssignment.ServiceProxy.Model;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ApiConfigurationParser
 {
@@ -17,41 +15,6 @@ namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ApiConfigurationPars
                 BaseUrl = DefaultBaseUrl,
                 Key = DefaultKey,
                 ConcurrentRequestsNumber = DefaultNumberOfConcurrentApiCalls
-            };
-        }
-
-    }
-
-    public class FromAppSettingsApiConfigurationParser : IApiConfigurationParser
-    {
-        private readonly IConfiguration _config;
-
-        public FromAppSettingsApiConfigurationParser(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        public BasicApiConfiguration GetBasicConfiguration()
-        {
-            var confSection = _config.GetSection("ApiSettings");
-
-            var baseUrl = confSection["BaseUrl"];
-            if(string.IsNullOrWhiteSpace(baseUrl))
-                throw new Exception("Missing BaseUrl conf");
-
-            var key = confSection["Key"];
-            if (string.IsNullOrWhiteSpace(key))
-                throw new Exception("Missing Key conf");
-
-            var numParallelReq = confSection["NumberOfParallelRequests"];
-            if (string.IsNullOrWhiteSpace(key))
-                throw new Exception("Missing NumberOfParallelRequests conf");
-
-            return new BasicApiConfiguration
-            {
-                BaseUrl = baseUrl,
-                Key = key,
-                ConcurrentRequestsNumber = int.Parse(numParallelReq)
             };
         }
 

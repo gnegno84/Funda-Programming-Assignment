@@ -7,7 +7,7 @@ namespace Funda.ProgrammingAssignment.ServiceProxy.Services.RequestBuilder
     {
         IRestClient BuildDefaultClient();
 
-        IRestRequest BuildGet(List<Parameter> queryStringParameters);
+        IRestRequest BuildGet(List<Parameter> optionalParameters);
 
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Funda.ProgrammingAssignment.Domain.Common.Dto;
 using Funda.ProgrammingAssignment.Domain.Common.Services;
 using Funda.ProgrammingAssignment.ServiceProxy.Model.ApiResults;
+using Funda.ProgrammingAssignment.ServiceProxy.Services.ProxyService;
 using Microsoft.Extensions.Logging;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy

@@ -2,6 +2,7 @@
 using Funda.ProgrammingAssignment.ServiceProxy;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.ApiConfigurationParser;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.DtoMapper;
+using Funda.ProgrammingAssignment.ServiceProxy.Services.ProxyService;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.RequestBuilder;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.ResilienceWrapper;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.SearchTermsFormatter;

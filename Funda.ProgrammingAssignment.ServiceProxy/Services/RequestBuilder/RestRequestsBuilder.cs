@@ -20,10 +20,10 @@ namespace Funda.ProgrammingAssignment.ServiceProxy.Services.RequestBuilder
            return new RestClient(_apiConfigurationParser.GetBasicConfiguration().BaseUrl);
         }
 
-        public IRestRequest BuildGet(List<Parameter> queryStringParameters)
+        public IRestRequest BuildGet(List<Parameter> optionalParameters)
         {
-            if(queryStringParameters == null)
-                queryStringParameters = new List<Parameter>();
+            if(optionalParameters == null)
+                optionalParameters = new List<Parameter>();
 
             var apiConfig = _apiConfigurationParser.GetBasicConfiguration();
 
@@ -32,7 +32,7 @@ namespace Funda.ProgrammingAssignment.ServiceProxy.Services.RequestBuilder
                 Resource = BuildResourcePathWithKey(apiConfig)
             };
 
-            foreach (var optionalParameter in queryStringParameters)
+            foreach (var optionalParameter in optionalParameters)
             {
                 request.AddOrUpdateParameter(optionalParameter);
             }

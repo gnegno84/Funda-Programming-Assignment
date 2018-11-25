@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Funda.ProgrammingAssignment.Domain.Common.Dto;
-using Funda.ProgrammingAssignment.Domain.Common.Services;
-using Funda.ProgrammingAssignment.ServiceProxy.Exceptions;
-using Funda.ProgrammingAssignment.ServiceProxy.Model;
 using Funda.ProgrammingAssignment.ServiceProxy.Model.ApiResults;
 using Funda.ProgrammingAssignment.ServiceProxy.Model.FundaApi;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.DtoMapper;
@@ -13,7 +9,7 @@ using Funda.ProgrammingAssignment.ServiceProxy.Services.ResilienceWrapper;
 using Funda.ProgrammingAssignment.ServiceProxy.Services.SearchTermsFormatter;
 using RestSharp;
 
-namespace Funda.ProgrammingAssignment.ServiceProxy
+namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ProxyService
 {
     public class FundaApiProxyService : IFundaProxyApiService
     {
@@ -51,14 +47,9 @@ namespace Funda.ProgrammingAssignment.ServiceProxy
 
             return await _wrapper.Execute(
                 () => client.ExecuteGetTaskAsync<LocatieFeed>(request),
-                response =>
-                {
-                    return response.IsSuccessful
-                        ? _dtoMapper.MapToPropertyDtoApiResult(response.Data, response.StatusCode.GetHashCode(),
-                            response.StatusDescription)
-                        : PagedApiResult<PropertyDto>.Failed(response.StatusCode.GetHashCode(),
-                            response.StatusDescription, response.ErrorMessage);
-                });
+                response => response.IsSuccessful
+                    ? _dtoMapper.MapToPropertyDtoApiResult(response.Data, response.StatusCode.GetHashCode(), response.StatusDescription)
+                    : PagedApiResult<PropertyDto>.Failed(response.StatusCode.GetHashCode(), response.StatusDescription, response.ErrorMessage));
         }
     }
 }

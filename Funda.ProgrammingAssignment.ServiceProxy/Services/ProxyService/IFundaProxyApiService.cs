@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Funda.ProgrammingAssignment.Domain.Common.Dto;
 using Funda.ProgrammingAssignment.ServiceProxy.Model.ApiResults;
 
-namespace Funda.ProgrammingAssignment.ServiceProxy
+namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ProxyService
 {
     public interface IFundaProxyApiService
     {
