@@ -4,7 +4,6 @@
     {
         public string Key { get; set; }
         public string BaseUrl { get; set; }
-
-
+        public int ConcurrentRequestsNumber { get; set; }
     }
 }

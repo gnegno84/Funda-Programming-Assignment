@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using CommandLine;
 using Funda.ProgrammingAssignment.Console.Commands.GetRealEstateAgentSales;
+using Microsoft.Extensions.Configuration;
 
 namespace Funda.ProgrammingAssignment.Console
 {
@@ -10,8 +12,14 @@ namespace Funda.ProgrammingAssignment.Console
         {
             try
             {
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+                IConfigurationRoot configuration = builder.Build();
+
                 var res = Parser.Default.ParseArguments<GetRealEstateAgentSalesCommandOptions>(args)
-                    .MapResult(GetRealEstateAgentSalesCommandHandler.RunGetRealEstateAgentSales, errs => 1);
+                    .MapResult(options => GetRealEstateAgentSalesCommandHandler.RunGetRealEstateAgentSales(options, configuration), errs => 1);
 
                 System.Console.ReadKey();
                 return res;

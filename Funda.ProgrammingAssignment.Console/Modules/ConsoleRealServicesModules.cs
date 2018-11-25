@@ -12,11 +12,9 @@ namespace Funda.ProgrammingAssignment.Console.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<FundaApiBasedRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
             builder.RegisterType<FundaApiProxyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SimpleDtoMapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<FixedApiConfigurationParser>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<FromAppSettingsApiConfigurationParser>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<RestRequestsBuilder>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PollyResiliencePolicyWrapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
