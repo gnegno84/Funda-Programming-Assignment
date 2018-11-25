@@ -10,6 +10,7 @@ using Funda.ProgrammingAssignment.Domain.Services.ResultMapper;
 
 namespace Funda.ProgrammingAssignment.Domain.BL
 {
+    //This class actually works as "orchestrator" as it takes the result from the repository and orchestrate the mapping of it to the caller
     public class RealEstateAgentsBl : IRealEstateAgentsBl
     {
         private readonly IPropertiesRepository _propertiesRepository;

@@ -6,6 +6,7 @@ using Funda.ProgrammingAssignment.ServiceProxy.Model.FundaApi;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.DtoMapper
 {
+    //I could have use Automapper but for a simple scenario like this one i've preferred to stick to good old way ;)
     public class SimpleDtoMapper : IDtoMapper
     {
         public PagedApiResult<PropertyDto> MapToPropertyDtoApiResult(LocatieFeed data, int responseStatusCode, string responseDescription)

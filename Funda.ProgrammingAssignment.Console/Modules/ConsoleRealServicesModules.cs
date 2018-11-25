@@ -9,6 +9,7 @@ using Funda.ProgrammingAssignment.ServiceProxy.Services.SearchTermsFormatter;
 
 namespace Funda.ProgrammingAssignment.Console.Modules
 {
+    //this module contains all the registration required in order to correctly integrate the application with the Funda API
     public class ConsoleRealServicesModules : Module
     {
         protected override void Load(ContainerBuilder builder)

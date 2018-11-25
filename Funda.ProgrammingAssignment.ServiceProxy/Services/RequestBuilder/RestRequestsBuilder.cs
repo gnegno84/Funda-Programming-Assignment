@@ -5,9 +5,9 @@ using RestSharp;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.RequestBuilder
 {
+    //This class masks the details of the creation of the request (using RestSharp library)
     public class RestRequestsBuilder : IRestRequestsBuilder
     {
-
         private readonly IApiConfigurationParser _apiConfigurationParser;
 
         public RestRequestsBuilder(IApiConfigurationParser apiConfigurationParser)

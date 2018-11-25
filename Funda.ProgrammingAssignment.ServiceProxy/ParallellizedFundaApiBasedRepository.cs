@@ -41,6 +41,7 @@ namespace Funda.ProgrammingAssignment.ServiceProxy
         {
             ConcurrentQueue<PropertyDto> res = new ConcurrentQueue<PropertyDto>();
 
+            //In order to know how many pages the service have to retrieve I have to first try to gather the initial page.
             //I have to start from page 1 as the page 0 and one have the same data replicated
             var pagedResult = await ExecuteApiCall(searchTerms, 1, DefaultPageSize, res);
             _logger.LogTrace($"Number of pages to inquire: {pagedResult.NumberOfPages} - Will be fetched using {_concurrentRequestsNumber} requests in parallel");
@@ -48,6 +49,7 @@ namespace Funda.ProgrammingAssignment.ServiceProxy
             ReturnExceptionIfRequestedTooManyPagesToRetrieve(pagedResult, MaxRetrievablePages);
 
             if (pagedResult.HasNextPageInPagination)
+                //There are more pages to retrieve. Those will be retrieved in parallel
                 RetrieveAllPagesData(searchTerms, pagedResult, res);
 
             return res;
@@ -58,6 +60,7 @@ namespace Funda.ProgrammingAssignment.ServiceProxy
         {
             if (pagedResult.NumberOfPages >= maxRetrievablePages)
             {
+                //TODO: Handle Exception too many pages in a more useful way =)
                 throw new Exception("The request contains too many entries to be processed!");
             }
         }
@@ -95,7 +98,9 @@ namespace Funda.ProgrammingAssignment.ServiceProxy
         private void ProceedInBatch(int batchSize, int currentBatch, int totalNumberOfPages,
             IEnumerable<string> searchTerms, int apiRequestPageSize, ConcurrentQueue<PropertyDto> res)
         {
+            //Please note that we have to add 2 to the starting page number as we've started from page 1 (not 0). See comments above.
             var startingPageNumber = currentBatch * batchSize + 2;
+            //How many requests in parallel needs to be performed? (in case of the last page it will be most probably less than the batch size)
             var requestsInBatch = Math.Min(batchSize, (totalNumberOfPages - startingPageNumber)+1);
             Task.WaitAll(
                 Enumerable.Range(startingPageNumber, requestsInBatch)

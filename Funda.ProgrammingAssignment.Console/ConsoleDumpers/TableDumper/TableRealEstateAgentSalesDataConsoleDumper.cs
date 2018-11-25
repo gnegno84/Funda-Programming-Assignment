@@ -4,6 +4,7 @@ using Funda.ProgrammingAssignment.Domain.Common.Dto;
 
 namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers.TableDumper
 {
+    //This "Dumper" will write to console a pretty printed table
     public class TableRealEstateAgentSalesDataConsoleDumper : BaseRealEstateAgentSalesDataConsoleDumper
     {
         private readonly IRealEstateAgentSalesDataTableCreator _dataTableCreator;

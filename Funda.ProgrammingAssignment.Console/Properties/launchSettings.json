@@ -2,7 +2,7 @@
   "profiles": {
     "Funda.ProgrammingAssignment.Console": {
       "commandName": "Project",
-      "commandLineArgs": "--searchterms Amsterdam Tuin --useparallelapiintegration=0"
+      "commandLineArgs": "--t Amsterdam Tuin"
     }
   }
 }

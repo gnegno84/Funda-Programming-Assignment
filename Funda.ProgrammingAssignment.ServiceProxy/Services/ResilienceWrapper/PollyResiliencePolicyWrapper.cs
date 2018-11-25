@@ -8,6 +8,7 @@ using RestSharp;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ResilienceWrapper
 {
+    //The goal of this class is to mask the "complexity" of the retry policy to the caller. And make the code more testable
     public class PollyResiliencePolicyWrapper : IResiliencePolicyWrapper
     {
         private readonly ILogger _logger;
@@ -17,6 +18,7 @@ namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ResilienceWrapper
             _logger = logger;
         }
 
+        //In case of exception (i should have used more specific TRANSIENT exceptions of the API, but for simplicity right now i'll just stick to catch them all) or an Unauthorized response code (the one that the API throws in case of over-requests) the resiliency policy will wait for a non-linear amount of time (2,4,8,16,32,and finally 64 seconds) before retrying the request.
         public async Task<TRes> Execute<TE, TRes>(Func<Task<IRestResponse<TE>>> funcToWrap, Func<IRestResponse<TE>, TRes> funcToExecuteOnSuccess)
         {
             var execRes = await Policy

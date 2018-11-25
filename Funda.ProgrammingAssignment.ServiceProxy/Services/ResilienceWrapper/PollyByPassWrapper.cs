@@ -6,6 +6,7 @@ using RestSharp;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ResilienceWrapper
 {
+    //Just bypass polly. Useful for testing error scenarios
     public class PollyByPassWrapper : IResiliencePolicyWrapper
     {
         public async Task<TRes> Execute<TE, TRes>(Func<Task<IRestResponse<TE>>> funcToWrap, Func<IRestResponse<TE>, TRes> funcToExecuteOnSuccess)

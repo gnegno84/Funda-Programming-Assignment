@@ -7,6 +7,8 @@ using Funda.ProgrammingAssignment.Domain.Common.Dto;
 
 namespace Funda.ProgrammingAssignment.Console.ConsoleDumpers
 {
+    //The "dumper" is the class used to write to console the results. This is the common class that prints the same header and info. 
+    //The printing of the result is delegated to a specific instance of this abstract class
     public abstract class BaseRealEstateAgentSalesDataConsoleDumper : IRealEstatesAgentSalesDataConsoleDumper
     {
         protected abstract void DumpToConsoleUsingSpecificDumper(IEnumerable<RealEstateAgentSalesDto> agentSales);

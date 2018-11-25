@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy
 {
+    //The simplest way to get the data. This Repository will use the ApiService in order to get all the pages (do GET while HASNEXTPAGEINPAGINATION) of the result.
+    //Not all code has been implemented (special case handling like too many pages or failure in retrieving the result of a page). A recovery strategy injection approach is what i would suggest in this scenario
     public class FundaApiBasedRepository : IPropertiesRepository
     {
         private readonly IFundaProxyApiService _fundaProxyApiService;
@@ -38,7 +40,8 @@ namespace Funda.ProgrammingAssignment.ServiceProxy
                 {
                     if (pagedResult.NumberOfPages >= maxRetrievablePages)
                     {
-                        //TODO: Handle Exception too many pages
+                        throw new Exception("The result's page number is to big to be handled. Sorry");
+                        //TODO: Handle Exception too many pages in a more useful way =)
                     }
 
                     res.AddRange(pagedResult.Data);

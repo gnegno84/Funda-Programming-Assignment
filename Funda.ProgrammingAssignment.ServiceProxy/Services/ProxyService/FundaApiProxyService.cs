@@ -11,6 +11,7 @@ using RestSharp;
 
 namespace Funda.ProgrammingAssignment.ServiceProxy.Services.ProxyService
 {
+    //This class executes the API call to the Funda service, containing all the nitty-gritty details of how it works (serialization, parameter names etc...)
     public class FundaApiProxyService : IFundaProxyApiService
     {
         public const string QueryTypeName = "type";
